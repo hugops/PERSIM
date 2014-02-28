@@ -5,12 +5,10 @@
  */
 package br.ufu.facom.persim.view;
 
-import br.ufu.facom.frameworkpim.control.EventoControl;
-import br.ufu.facom.frameworkpim.control.StickyNotesControl;
+import br.ufu.facom.frameworkpim.control.AbstractFactory;
 import br.ufu.facom.frameworkpim.view.MainWindowFrame;
+import br.ufu.facom.persim.control.ConcreteFactory;
 import br.ufu.facom.persim.control.DatabaseConfigControl;
-import br.ufu.facom.persim.control.EventoControlImpl;
-import br.ufu.facom.persim.control.StickyNotesControlImpl;
 import javax.swing.JOptionPane;
 
 /**
@@ -25,8 +23,8 @@ public class Persim extends MainWindowFrame {
     private javax.swing.JMenuItem disciplinaMenu = new javax.swing.JMenuItem();
     private CadastroDisciplina cadDisc;
 
-    public Persim(EventoControl eventoControl, StickyNotesControl stickyNotesControl) {
-        super(eventoControl, stickyNotesControl);
+    public Persim(AbstractFactory factory) {
+        super(factory);
         initComponents();
     }
 
@@ -107,9 +105,7 @@ public class Persim extends MainWindowFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                EventoControl eventoControl = new EventoControlImpl();
-                StickyNotesControl stickyNotesControl = new StickyNotesControlImpl();
-                new Persim(eventoControl, stickyNotesControl).setVisible(true);
+                new Persim(new ConcreteFactory()).setVisible(true);
             }
         });
     }
